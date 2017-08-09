@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+      <!-- 找到要删除的数据  后面  .pop删除的方法即可 -->
+			<div>
+				<p @click="jsonD.c.pop()">{{{jsonD.a}}}</p>
+				<ul>
+					<li v-for="(key,val) in jsonD">
+						{{{key+':'+val}}}
+					</li>
+				</ul>
+			</div>
+			<p @click="n=456">{{n}}</p>
+			<p v-html="str"></p>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="js/vue1.js" ></script>
+<script>
+	var vm = new Vue({
+		el:'#box',
+		data:{
+			n:121,
+			str:'hello ib',
+			jsonD:{
+				a:'<a href="javascript:;">删除</a>',
+				b:2,
+				c:[1,2,4]
+			}
+		},
+		methods:{
+
+		}
+	});
+//	vm.$watch('m',function(){
+//		//alert('变化了');
+//		if(this.m==1){
+//			this.m=11111;
+//		}
+//	});                //不是完全监听
+	vm.$watch('n',function(){
+		//alert('变化了');
+		if(this.n==456){
+			this.n='刚刚值发生改变了';
+		}
+		},{deep: true});     //{deep:true}完全监听
+</script>

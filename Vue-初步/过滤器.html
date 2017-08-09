@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>过滤器</title>
+    <script type="text/javascript" src="js/vue1.js"></script>
+  </head>
+  <body>
+    <div class="box">
+      <!-- 转换钱币currency 参数1:钱币符号  参数2:小数点后几位数-->
+      <p>{{user | currency '￥' 5}}</p>
+      <!-- 首字母大写capitalize -->
+      <p>{{Upp | capitalize}}</p>
+      <!-- 全改为大写uppercase -->
+      <p>{{Upp | uppercase}}</p>
+      <!-- 全改为小写lowercase -->
+      <p>{{Low | lowercase}}</p>
+  <!-- 执行的时间 debounce 参数:要执行的时间   不写参数默认为300   限制： 需在@里面使用-->
+      <button id="btn" @click="bott | debounce 1000">点我消失</button>
+  <!-- 过滤器limitBy
+      (1)限制:需在v-for(即数组)里面使用
+      (2)两个参数:
+            第一个参数:{Number} 取得数量
+            第二个参数:{Number} 偏移量 -->
+      <p>
+        <a href="javascript:;" v-for="x in num | limitBy 10 3"> {{x}} </a>
+      </p>
+    </div>
+
+
+    <script type="text/javascript">
+          new Vue({
+            el:'.box',
+            data:{
+              user:2000,
+              Tag:'<a>阿斯达斯</a>',
+              Upp:'ndy',
+              Low:'NDY',
+              num:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+            },
+            methods:{
+              bott:function(){
+                document.getElementById('btn').style.display = 'none';
+              }
+            }
+          })
+
+
+    </script>
+
+  </body>
+</html>

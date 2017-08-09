@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>组件</title>
+    <script src="js/vue1.js"></script>
+  </head>
+  <body>
+    <!-- 全局组件实例 -->
+    <!-- 组件显示位置 -->
+    <div class="box">
+      <my-component></my-component>
+    </div>
+
+  </body>
+</html>
+<!-- x-template解析script -->
+<script type="x-template" id="temp">
+    // 用||来判断内容是否为空  若为空去||右边的值
+    //只能在{{}}里判断   v-text="";和 v-html="";中不可以
+    //{{}}里可以写各种方法
+    <h1 @click='show'>{{tExt || 'asdasd'}}</h1>
+</script>
+
+<!-- <template id="temp">
+  <h1 @click='show' v-html="tExt"></h1>
+</template> -->
+
+<script type="text/javascript">
+    // 要把这个构造器用作组件，需要用 Vue.component(组件名, 构造器名) 注册
+    Vue.component('my-component', {
+      template:'#temp',          //template标签的ID名
+      // 数据和方法要写在创建的组件里
+      data(){             //data数据要retuen返回   data()注意写法不是 :
+        return{
+          //让其内容为空使上面判断
+          tExt:'jjjj'
+        }
+      },
+      methods:{
+        show(){
+          alert(123)
+        }
+      }
+    });
+
+    new Vue({
+      el:'.box'
+    })
+
+</script>

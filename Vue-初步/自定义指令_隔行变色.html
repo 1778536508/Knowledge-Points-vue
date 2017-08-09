@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue1.js"></script>
+  </head>
+  <script type="text/javascript">
+    window.onload=function(){
+
+        Vue.directive('demo',function(){
+            this.el.style.backgroundColor="red";
+            this.el.style.color="#fff";
+        })
+        Vue.directive('demoname',function(){
+          var oLi = this.el.children;
+          for(var i = 0; i< oLi.length;i++){
+            if(i%2==0){
+              oLi[i].style.backgroundColor = 'blue';
+            }else{
+              oLi[i].style.backgroundColor = 'yellow';
+            }
+          }
+        })
+
+        new Vue({
+          el:'.box',
+          data:{
+            msg:'聂东野',
+            arr:['一','二','三','四','五','六']
+          }
+        })
+    }
+  </script>
+  <body>
+    <div class="box">
+      <p v-demo>{{msg}}</p>
+      <ul v-demoname>
+        <li v-for="(key,val) in arr">{{key}}:{{val}}</li>
+      </ul>
+    </div>
+  </body>
+</html>

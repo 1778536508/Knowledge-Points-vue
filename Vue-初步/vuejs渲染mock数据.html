@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/Vue.js v2.3.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mock.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue-resource.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<ul id="uli">
+			<li v-for="x in list">{{x.name}}{{x.age}}{{x.sex}}</li>
+		</ul>
+		
+		
+	</body>
+</html>
+<script type="text/javascript">
+	
+	Mock.mock('_url',{
+		'list|10':[{
+			'name':'张三',
+			'age':23,
+			'sex':'男'
+		}]
+	});
+
+	
+	var vm = new Vue({
+		el:'#uli',
+		data:{
+			list:[]
+		},
+		methods:{
+			puls:function(){
+				this.$http.get('_url').then(function(data){
+					console.log(data);
+					this.list = data.body.list
+				})
+				
+			}
+			
+			
+		}
+		
+	})
+	vm.puls();
+	
+	
+	
+	
+	
+	
+	
+	
+</script>

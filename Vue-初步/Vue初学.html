@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
+		<!--<script src="https://unpkg.com/vue"></script>-->
+		<script src="js/Vue.js v2.3.3.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+		  <p>{{ message }}</p>
+		</div>
+
+		<div id="name">
+			<p>{{ndy}}</p>
+		</div>
+
+		<div class="log">
+			<p>{{wwe}}</p>
+			<p>{{wwe}}</p>
+			<p>{{wwe}}</p>
+			<p>{{wwe}}</p>
+			<p>{{wwe}}</p>
+			{{wer}}
+		</div>
+
+
+		<script type="text/javascript">
+
+			new Vue({
+				el:'.log',
+				data:{
+					wwe:'呜呜呜呜呜呜',
+					wer:"水电费GV地方还不放过"
+				}
+			})
+
+
+			new Vue({
+			  el: '#app',
+			  data: {
+			    message: 'Hello Vue.js! NieDongYe',
+			  }
+			})
+
+			new Vue({
+				el:'#name',
+				data : {
+					ndy:'I name ndy'
+				}
+			})
+
+
+		</script>
+
+
+	</body>
+</html>

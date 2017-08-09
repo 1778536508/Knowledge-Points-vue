@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/vue1.js"></script>
+  </head>
+  <body>
+    <div class="box">
+      <!-- 指令删除或保留    不会保留原来的位置-->
+      <h1 v-if="del">yes</h1>
+      <!-- 指令显示隐藏      不会保留原来的位置-->
+      <h1 v-show="show">显示隐藏</h1>
+
+      <!-- 因为 v-if 是一个指令，需要将它添加到一个元素上。但是如果我们想切换多个元素呢？此时我们可以把一个 <template> 元素当做包装元素，并在上面使用 v-if，最终的渲染结果不会包含它。 -->
+      <!-- 组成块  使多个元素设置v-if -->
+      <template v-if="del">
+        <h1>123</h1>
+        <h1>123</h1>
+        <h1>123</h1>
+        <h1>123</h1>
+      </template>
+
+
+
+
+      <ol>
+        <!-- 遍历元素   在vue1.0中第一个参数为下标，第二个参数为内容 -->
+        <li v-for="(key,val) in str">
+          <a href="javascript">
+            {{key}}
+          </a>
+          {{val}}
+        </li>
+      </ol>
+
+
+      <ol>
+        <!-- 渲染一个包含多个元素的块  似乎没什么用-->
+        <template v-for="(key,val) in str">
+          <li>{{val}}</li>
+        </template>
+      </ol>
+
+
+
+
+    </div>
+    <script type="text/javascript">
+        new Vue({
+          el:'.box',
+          data:{
+            del:true,        //true保留   false删除
+            show:false,       //true隐藏   false显示
+            str:['name','age','sex','link',2,3,4,5]
+          }
+        })
+    </script>
+  </body>
+</html>

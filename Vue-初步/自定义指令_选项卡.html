@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>选项卡</title>
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .div1 input.active{
+        background: red;
+      }
+      .div1 div{
+        display: none;
+      }
+      .div1 div.active{
+        display: block;
+      }
+    </style>
+  </head>
+  <script type="text/javascript" src="js/vue1.js"></script>
+  <script type="text/javascript">
+    window.onload = function(){
+
+      Vue.directive('demo',function(){
+            var oDem = this.el;
+            var oBut = oDem.getElementsByTagName('input');
+            var oDiv = oDem.getElementsByTagName('div');
+
+            for(var i = 0; i< oBut.length;i++){
+              (function(index){
+                oBut[index].onclick = function(){
+                    for(var i = 0; i <  oBut.length;i++){
+                      oBut[i].className = '';
+                      oDiv[i].className = '';
+                    }
+                    this.className = 'active';
+                    oDiv[index].className = 'active';
+                }
+              })(i)
+            }
+      })
+
+
+
+      new Vue({
+        el:'.box',
+        data:{
+          msg:'sasda'
+        }
+      })
+    }
+  </script>
+  <body>
+    <div class="box">
+      <div class="div1" v-demo>
+        <input type="button" class="active" value="11">
+        <input type="button" value="22">
+        <input type="button" value="33">
+        <div class="active">11</div>
+        <div>22</div>
+        <div>33</div>
+      </div>
+
+    </div>
+
+  </body>
+</html>

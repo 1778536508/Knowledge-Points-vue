@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>组件</title>
+    <script src="js/vue1.js"></script>
+  </head>
+  <body>
+    <!-- 全局组件实例 -->
+    <div class="box">
+      <my-component></my-component>
+    </div>
+    <div class="box2">
+      <my-component></my-component>
+    </div>
+
+
+    <!-- 局部组件   只能在#app中显示     基本用不到-->
+    <div id="app">
+      ======================================================<br/>
+      <p style="color:red">基本用不到！！！！！！！</p>
+      <my-component></my-component>
+    </div>
+
+    <div id="app2">
+      <my-component></my-component>
+    </div>
+
+
+
+
+
+  </body>
+</html>
+<script type="text/javascript">
+    // 创建一个组件构造器
+    var MyComponent = Vue.extend({
+        //定义内容
+        template:'<h1>我是全局组件1111111111111</h1>',
+        //两次定义会将上面的覆盖掉
+        template:'<p>我是全局组件22222222222222</p>'
+    })
+    // 要把这个构造器用作组件，需要用 Vue.component(组件名, 构造器名) 注册
+    Vue.component('my-component', MyComponent);
+    new Vue({
+      el:'.box'
+    })
+    new Vue({
+      el:'.box2'
+    })
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 局部组件 基本用不到！！！！！！-->
+<script>
+        // 1.创建一个组件构造器
+        var myComponent = Vue.extend({
+          //该属性是不能变的  只能是template
+            template: '<div>我是局部组件</div>'
+        })
+
+        new Vue({
+            el: '#app',
+            //这里的注册器components只能针对#app
+            components: {
+                // 2. 将myComponent组件注册到Vue实例下
+                'my-component' : myComponent
+            }
+        });
+
+        new Vue({
+            el: '#app2',
+            //这里的注册器components只能针对#app2
+            components: {
+                // 2. 将myComponent组件注册到Vue实例下
+                'my-component' : myComponent
+            }
+        });
+    </script>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      *{
+          margin: 0;
+          padding: 0;
+      }
+      .box{
+        width: 800px;
+        margin: 100px auto;
+        overflow: hidden;
+      }
+      .box a{
+        float: left;
+        width: 150px;
+        height: 100px;
+        border: 1px solid blue;
+        text-align: center;
+        line-height: 100px;
+        text-decoration: none;
+        font-size: 100px;
+        color: red;
+      }
+    </style>
+    <script type="text/javascript" src="js/vue1.js"></script>
+    <script type="text/javascript">
+    window.onload = function(){
+        var vm = new Vue({
+          el:'.box',
+          data:{
+            msg:1
+          },
+          methods:{
+            add(){
+              alert(123);
+            }
+          }
+        })
+
+        vm.$watch('msg',function(){
+          if(this.msg < 0){
+            this.msg = 0;
+          }
+        },{deep:true});
+      }
+    </script>
+  </head>
+  <body>
+    <div class="box">
+
+      <a href="javascript:;" @click="msg++">+</a>
+      <a href="javascript:;" @click="add">{{msg}}</a>
+      <a href="javascript:;" @click="msg--">-</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>阻止冒泡事件</title>
+    <script type="text/javascript" src="js/vue1.js"></script>
+    <script type="text/javascript">
+    window.onload=function(){
+      new Vue({
+        el:'.box',
+        data:{
+
+        },
+        methods:{
+          show(){
+            alert('div');
+          },
+          show2(ev){
+            alert('button');
+            // 第一种方法在子元素事件中添加ev.stopPropagation();需要传参ev
+            // ev.stopPropagation();
+          }
+        }
+      })
+    }
+
+
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      <div @click="show">
+        <!-- 第二种方法想要阻止冒泡事件只需要在@click.stop即可 -->
+        <button type="button" @click.stop="show2($event)">点击</button>
+      </div>
+
+    </div>
+
+  </body>
+</html>

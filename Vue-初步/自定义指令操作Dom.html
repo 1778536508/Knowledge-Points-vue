@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/vue1.js"></script>
+  </head>
+  <body >
+
+    <div id="demo" v-demo>
+
+    </div>
+
+  </body>
+  <script>
+
+
+  // Vue.directive('demo', {
+  //     // bind: function () {
+  //     //   console.log('demo bound! bind')
+  //     // },
+  //
+  //     //操作Dom的函数
+  //     update: function (value) {
+  //       //this.el获取到当前的标签
+  //       console.log(this.el);
+  //       this.el.innerHTML = 123;
+  //       this.el.style.width = '500px';
+  //       this.el.style.height = '500px';
+  //       this.el.style.background = 'red';
+  //       this.el.style.fontSize = '100px';
+  //     }
+  // })
+  // var demo = new Vue({
+  //       el: '#demo',
+  //       data: {
+  //       msg: 'hello!'
+  //       }
+  // })
+
+  Vue.directive('demo',function(){
+    console.log(this.el);
+    this.el.style.height = '50px';
+    this.el.style.background = 'red';
+  })
+
+  new Vue({
+    el:'#demo'
+  })
+
+
+
+
+
+  </script>
+
+
+</html>

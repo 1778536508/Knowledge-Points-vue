@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue1.js"></script>
+  </head>
+  <body>
+    <div class="box">
+      <div @click.stop.prevent="show($event)">
+        左击
+        <button type="button" @contextmenu.stop.prevent="show2($event)">右击</button>
+      </div>
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el:'.box',
+        data:{
+
+        },
+        methods:{
+          show(ev){
+            alert(1);
+            ev.
+          },
+          show2(ev){
+            alert(2);
+          }
+        }
+      })
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue1.js"></script>
+    <script type="text/javascript" src="js/XQuery.js"></script>
+  </head>
+  <body>
+    <div id="box">
+      <input type="button"  value="获取数据" @click="show">
+      <ul>
+        <li v-for="val in arr">
+            <h3>{{val.date}}</h3>
+            <p>{{val.temp}}</p>
+            <p>{{val.weather}}</p>
+            <p>{{val.wind}}</p>
+        </li>
+
+      </ul>
+    </div>
+
+  </body>
+</html>
+<script type="text/javascript">
+  var vm = new Vue({
+    el:'#box',
+    data:{
+      arr:[]
+    },
+    methods:{
+
+      show(){
+        //https://api.asilu.com/weather/?city=北京&callback=show
+        $.jsonp({
+          url:'https://api.asilu.com/weather/',
+          data:{
+            city:'北京'
+          },
+          success:function(data){
+            vm.arr = data.weather;
+            console.log(data.weather);
+          }
+        })
+
+      }
+    }
+  })
+
+
+</script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>class/style</title>
+  </head>
+  <script src="js/vue1.js"></script>
+  <style>
+        .div1{
+          width: 500px;
+          height: 500px;
+          background: red;
+        }
+        .div2{
+          width: 500px;
+          height: 500px;
+          background: blue;
+        }
+  </style>
+  <body>
+    <div class="box">
+      <!-- Class -->
+      <!-- 第一种写法 -->
+      <div v-bind:class="{div1:str}"></div>
+      <!-- 第二种写法 -->
+      <div :class="{div2:str2}"></div>
+
+      <!-- Style -->
+      <!-- 第一种写法 -->
+      <div v-bind:style="{background:color,color:font}">red</div>
+      <!-- 第二种写法 -->
+      <div :style="{background:color,color:font}">ssssssssssssssss</div>
+
+
+    </div>
+    <script type="text/javascript">
+        new Vue({
+          el:'.box',
+          data:{
+            str:true,
+            str2:true,
+            color:'red',
+            font:'white'
+          }
+        })
+    </script>
+
+  </body>
+</html>

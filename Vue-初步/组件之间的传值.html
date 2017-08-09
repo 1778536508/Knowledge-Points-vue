@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>组件</title>
+    <script src="js/vue1.js"></script>
+  </head>
+  <body>
+    <!-- 全局组件实例 -->
+    <!-- 组件显示位置 -->
+    <div class="box">
+      <my-component></my-component>
+      <my-component2></my-component2>
+    </div>
+
+  </body>
+</html>
+<!-- x-template解析script -->
+<!-- 组件1 -->
+<script type="x-template" id="temp">
+  <div>
+    // 用||来判断内容是否为空  若为空去||右边的值
+    // 只能在{{}}里判断   v-text="";和 v-html="";中不可以
+    // {{}}里可以写各种方法
+    <h1 @click='show'>
+      <a href="javascript:;">
+          {{'组件1'+a || 'asdasd'}}
+      </a>
+    </h1>
+  </div>
+</script>
+<!-- 组件2 -->
+<script type="x-template" id="temp2">
+  <div>
+    {{'组件2'+a}}
+    <h2 @click="show2">点击</h2>
+  </div>
+</script>
+
+
+
+
+<script type="text/javascript">
+    // 要想组件与组件之间进行传值需要三个方式
+    // （1）
+    var ev = new Vue();
+
+    //组件1
+    Vue.component('my-component', {
+      template:'#temp',
+      data(){
+        return{
+          a:'jjjj'
+        }
+      },
+      //ready是一个方法
+      ready(){
+        // （2）
+        ev.$on('b-con',con=>{    //$on接收数据
+          this.a = con;
+        });
+      },
+      methods:{
+        show(){
+          alert(123);
+        }
+      }
+    });
+
+    //组件2
+    Vue.component('my-component2', {
+      template:'#temp2',
+      data(){
+        return{
+          a:'kkkkkkkkkkkk'
+        }
+      },
+      //设定方法
+      ready(){
+        // （3）
+        ev.$emit('b-con',this.a);   //$emit发送数据给$on
+      },
+      methods:{
+        show2(){
+          alert(456);
+        }
+      }
+    });
+
+
+    new Vue({
+      el:'.box'
+    })
+
+</script>

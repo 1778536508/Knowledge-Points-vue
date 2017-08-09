@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div v-for="item in arr">
+			<div>{{item.book}}</div>
+			<!--点击事件-->
+			<div @click="ss()"></div>   
+		</div>
+	</body>
+	<script>
+		a:cct?b:ggg        cb:xxx
+		err:0 msg:usernankll
+		//window.onload监听浏览器
+		document.addEventListener(DOMContentLoaded,function(){
+			//请求php路径
+			var url = "httpkuhuk";
+			//定义一个vue
+			var v = new Vue({
+				el:"body",
+				data:{
+					arr:[];
+				},
+				//执行的方法
+				methods:{
+					//点击事件
+					ss:function(){
+						//请求jsonp  Vue自带jsonp
+						this.$http.jsonp(url,{
+							a:cct,
+							b:ggg
+							//jsonp请求的接口     then成功请求的方法相当于success   res相当于请求的所有数据
+						},{jsonp:"cb"}).then(function(res){
+							if(res.err==0){
+								this.arr=res.data;
+							}
+						})
+					}
+				}
+			})
+			
+			
+			//当不执行Vue时  将执行的函数写在封装在函数内
+			//传个參值v将上面的vue执行的数据传下来
+			funtion getAll(v){
+				
+			}
+		},false)
+		
+		
+		
+	</script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/Vue.js v2.3.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue-router2.6.0.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+       /*标签-active   点击事件*/
+      .router-link-active{
+        color: red;
+      }
+    </style>
+	</head>
+	<body>
+
+		<div id="app">
+			<!-- 一级页面 -->
+			<div>
+				<router-link to="/home">主页</router-link>
+				<!-- 路径后面加一个子路由的路径就能使其默认显示/001 -->
+				<router-link to="/news/001">列表</router-link>
+			</div>
+			<router-view></router-view>
+		</div>
+		<!-- 二级页面    在写template标签的时候里面必须嵌套一个最外层的div-->
+		<template id="temp2">
+			<div>
+				<h1>二级页面:列表内容</h1>
+				<div>
+					<!-- 二级页面 -->
+					<router-link to="/news/001">列表1</router-link>
+					<router-link to="/news/002">列表2</router-link>
+				</div>
+				<router-view></router-view>
+			</div>
+		</template>
+
+	</body>
+</html>
+
+
+<script type="text/javascript">
+	//创建内容
+	const Home = {template: '<div>主页内容</div>'};   //二级页面
+	const News = {template: '#temp2'};               //二级页面
+	const NewsContent1 = {template: '<p>列表1content</p>'};   //三级页面
+	const NewsContent2 = {template: '<p>列表2content</p>'};   //三级页面
+	//配置路由
+	const rou = [
+		{path:'/home',component:Home},       //二级页面路由
+    {path:'/news',component:News,         //二级页面路由
+				children:[            //在哪里嵌套路由就在哪里添加children子路由
+					{path:'/news/001',component:NewsContent1},    //三级页面路由
+					{path:'/news/002',component:NewsContent2}     //三级页面路由
+				]
+		},
+		{path:'/',redirect:'/Home'}   //默认显示
+	];
+
+
+
+
+
+
+	const router = new VueRouter({
+		routes:rou
+	})
+
+	new Vue({
+    router,
+		el:'#app'
+	})
+</script>

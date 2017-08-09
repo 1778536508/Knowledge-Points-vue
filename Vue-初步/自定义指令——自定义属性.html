@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>自定义属性</title>
+    <script src="js/vue1.js"></script>
+  </head>
+  <body>
+    <div class="box">
+
+      <my-directive  class="div1"  name="mydirective"
+        a="params">
+      </my-directive>
+
+    </div>
+
+    <script type="text/javascript">
+        //调用bind函数  elementDirective定义自定义标签
+        Vue.elementDirective('my-directive',{
+          //将a属性和值变成object对象类型   在下面打印  params自定义
+          params:['a'],
+          bind:function(){
+            // this指向当前自定义标签  el:Element当前的浏览器  后面的是Dom方法
+            console.info(this.el.className);          //hello
+            console.info(this.el.getAttribute('name'));   //mydirective
+
+            //object{a:params}对象类型，直接找到a =>  params
+            console.log(this.params.a);    //params
+          }
+        })
+      //这里必须要创建实例 而且要在后面创建
+      new Vue({
+        el:'.box'
+      })
+
+    </script>
+
+  </body>
+</html>

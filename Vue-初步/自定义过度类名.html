@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue1.js"></script>
+    <link rel="stylesheet" href="css/animate.min.css">
+  </head>
+  <body>
+    <div class="box">
+      <!-- 当点击是取反 -->
+      <input type="button" value="点击" @click="a=!a">
+      <!-- 必写class="animated"    transition=  全局动画名bounce -->
+      <div v-if="a" class="animated" transition="bounce">hello</div>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+    //创建全局动画名bounce
+      Vue.transition('bounce', {
+          enterClass: 'zoomInRight',
+          leaveClass: 'bounceOut'
+      })
+      new Vue({
+        el:'.box',
+        data:{
+          a:true
+        }
+      })
+
+    </script>
+
+  </body>
+</html>
+
+
+<!--  bounce                反弹
+      flash                  闪光
+      pulse                  脉冲
+      rubberBand             橡皮筋
+      shake                    摇
+      headShake               摇头
+      swing                   摆动
+      tada                    多田
+      wobble                  晃动
+      jello                   果冻
+      bounceIn                边界
+      bounceInDown            边界下
+      bounceInLeft            边界左
+      bounceInRight           边界右
+      bounceInUp              边界上
+      bounceOut                从右向左显示
+      bounceOutDown
+      bounceOutLeft
+      bounceOutRight
+      bounceOutUp
+      fadeIn
+      fadeInDown
+      fadeInDownBig
+      fadeInLeft
+      fadeInLeftBig
+      fadeInRight
+      fadeInRightBig
+      fadeInUp
+      fadeInUpBig
+      fadeOut
+      fadeOutDown
+      fadeOutDownBig
+      fadeOutLeft
+      fadeOutLeftBig
+      fadeOutRight
+      fadeOutRightBig
+      fadeOutUp
+      fadeOutUpBig
+      flipInX
+      flipInY
+      flipOutX
+      flipOutY
+      lightSpeedIn
+      lightSpeedOut
+      rotateIn
+      rotateInDownLeft
+      rotateInDownRight
+      rotateInUpLeft
+      rotateInUpRight
+      rotateOut
+      rotateOutDownLeft
+      rotateOutDownRight
+      rotateOutUpLeft
+      rotateOutUpRight
+      hinge
+      jackInTheBox
+      rollIn
+      rollOut
+      zoomIn
+      zoomInDown
+      zoomInLeft
+      zoomInRight
+      zoomInUp
+      zoomOut
+      zoomOutDown
+      zoomOutLeft
+      zoomOutRight
+      zoomOutUp
+      slideInDown
+      slideInLeft
+      slideInRight
+      slideInUp
+      slideOutDown
+      slideOutLeft
+      slideOutRight
+      slideOutUp
+-->

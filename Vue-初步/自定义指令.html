@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>自定义指令</title>
+    <script src="js/vue1.js"></script>
+  </head>
+  <body>
+    <div class="box">
+      <!-- 调用时必须V开头 -->
+      <div v-my-directive="someValue"></div>
+
+    </div>
+
+
+    <!-- 如果指令需要多个值，可以传入一个js对象 -->
+    <!-- 指令可以使用合法的js表达式 -->
+    <body id="example">
+      <!-- 可以获取到v-demo中的color:值   和text:值 -->
+        <div id="demo" v-demo="{color : 'white',text : 'hello!'}"></div>
+        <!-- 定义字符串的属性literal -->
+        <div id="demo2" v-demo2.literal="holle word"></div>
+    </body>
+
+
+
+      <script type="text/javascript">
+
+        //第一种方法
+        Vue.directive('my-directive',{
+          //大多数会用到第一个函数
+            bind : function(){
+                //准备工作
+                //例如，添加事件处理器或只需要运行一次的高耗任务
+            },
+
+            update : function(){
+                //值更新时的工作
+                //也会以初始值为参数调用一次
+            },
+
+            unbind : function(){
+                //清理工作
+                //例如，删除bind()添加的事件监听器
+            }
+        })
+
+
+        //第二种方法
+        //只需要update函数，可以传一个函数替代定义对象
+        Vue.directive('my-directive',function(value){})
+
+
+
+
+
+
+
+
+
+        // 第二种方实例：   value参数代表获取的所以内容   用到面向对象思想
+        //调用这种函数只能待用一次
+        Vue.directive('demo',function(value){
+          // console.info与console.log一样都是打印但前者带有！符号
+          //value.属性 == 属性值
+            console.info(value.color); //！white
+            console.info(value.text) // ！hello!
+        })
+        var demo = new Vue({
+            el : '#demo'
+        })
+
+        Vue.directive('demo2',function(value){
+          console.log(value);
+        })
+        var demo = new Vue({
+          el:'#demo2'
+        })
+
+
+      </script>
+
+
+  </body>
+</html>

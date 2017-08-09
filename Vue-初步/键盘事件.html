@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义指令</title>
+		<script type="text/javascript" src="js/vue1.js" ></script>
+		<script>
+			window.onload=function(){
+				new Vue({
+					el:"#box",
+					data:{
+						msg:'asassa',
+						ele:'<h1>assasa</h1>'
+					},
+					methods:{
+						show(ev){
+							//alert(ev.keyCode);
+							alert(1);
+							//ev.preventDefault();
+						}
+					}
+				});
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box" >
+			<div>
+				<!-- 前面是事件   后面  .键  即可 -->
+				<!-- 数字1抬起事件 -->
+				<input type="text" @keyup.49="show($event)"  value="1"/><br>
+				<!-- 回车键抬起事件 -->
+				<input type="text" @keyup.enter="show($event)"  value="回车"/><br>
+				<!-- 上下左右抬起事件 -->
+				<input type="text" @keyup.left="show($event)"  value="左"/><br>
+				<input type="text" @keyup.up="show($event)" value="上" /><br>
+				<input type="text" @keyup.down="show($event)"  value="下"/><br>
+				<input type="text" @keyup.right="show($event)" value="右" /><br>
+				<!-- delete删除键抬起事件 -->
+				<input type="text" @keyup.delete.up="show($event)" value="delete" /><br>
+
+			</div>
+		</div>
+
+	</body>
+</html>
